@@ -6,7 +6,7 @@ function kaldMig(func) {
 
 function sov(ms) {
     console.log("skaber nyt promise")
-    const prom = new Promise(dummyFunction => setTimeout(aa => kaldMig(dummyFunction), ms))
+    const prom = new Promise(dummyFunction => setTimeout(() => kaldMig(dummyFunction), ms))
     return prom
 }
 

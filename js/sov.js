@@ -6,6 +6,16 @@ function kaldMig(func) {
 
 function sov(ms) {
     console.log("skaber nyt promise")
+    const prom = new Promise(dummyFunction => {
+        console.log("nu vil jeg kalde setTimeout")
+        setTimeout(() => kaldMig(dummyFunction), ms)
+    })
+    return prom
+}
+
+
+function sov2(ms) {
+    console.log("skaber nyt promise")
     const prom = new Promise(dummyFunction => setTimeout(() => kaldMig(dummyFunction), ms))
     return prom
 }

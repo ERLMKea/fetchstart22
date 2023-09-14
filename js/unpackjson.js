@@ -15,3 +15,4 @@ console.log(keys)
 keys.forEach(key => console.log(obj[key]))
 
 console.log(typeof keys)
+

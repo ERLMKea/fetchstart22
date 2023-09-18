@@ -7,18 +7,41 @@ const inpName = document.getElementById("inpName")
 const inpHref = document.getElementById("inpHref")
 
 const regionUrl = "http://localhost:8080/region"
+const regionUrlx = "http://localhost:8080/region/1084"
 
-async function postRegion() {
+function getRegion() {
     const region = {}
     region.kode = inpKode.value
     region.navn = inpName.value
     region.href = inpHref.value
     console.log(region)
-    const res = await postObjectAsJson(regionUrl, region)
-
+    return region
 }
 
-async function postObjectAsJson(url, region) {
+async function postRegion() {
+    const region = getRegion()
+    const res = await postObjectAsJson(regionUrl, region, "POST")
+    if (res.ok) {
+        alert("Region saved")
+    }
+}
+
+async function postObjectAsJson(url, object, httpVerbum) {
+    const objectAsJsonString = JSON.stringify(object)
+    console.log(objectAsJsonString)
+    const fetchOptions = {
+        method: httpVerbum,
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: objectAsJsonString
+    }
+    const response = await fetch(url, fetchOptions)
+    return response
+}
+
+
+async function postObjectAsJsonxx(url, region) {
     const objectAsJsonString = JSON.stringify(region)
     console.log(objectAsJsonString)
     const fetchOptions = {

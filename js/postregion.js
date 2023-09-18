@@ -8,7 +8,6 @@ const inpName = document.getElementById("inpName")
 const inpHref = document.getElementById("inpHref")
 
 const regionUrl = "http://localhost:8080/region"
-const regionUrlx = "http://localhost:8080/region/1084"
 
 function getRegion() {
     const region = {}

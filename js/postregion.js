@@ -1,6 +1,7 @@
 console.log("jeg er i postregion")
 
 const pbPostRegion = document.getElementById("pbPostRegion")
+const pbPutRegion = document.getElementById("pbPutRegion")
 
 const inpKode = document.getElementById("inpKode")
 const inpName = document.getElementById("inpName")
@@ -26,6 +27,16 @@ async function postRegion() {
     }
 }
 
+async function putRegion() {
+    const region = getRegion()
+    const putUrl = regionUrl + "/" + region.kode
+    console.log(putUrl)
+    const res = await postObjectAsJson(putUrl, region, "PUT")
+    if (res.ok) {
+        alert("Region updated")
+    }
+}
+
 async function postObjectAsJson(url, object, httpVerbum) {
     const objectAsJsonString = JSON.stringify(object)
     console.log(objectAsJsonString)
@@ -40,35 +51,14 @@ async function postObjectAsJson(url, object, httpVerbum) {
     return response
 }
 
-
-async function postObjectAsJsonxx(url, region) {
-    const objectAsJsonString = JSON.stringify(region)
-    console.log(objectAsJsonString)
-    const fetchOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: objectAsJsonString
-    }
-
-    const response = await fetch(url, fetchOptions)
-
-    if (!response.ok) {
-        const errorMessage = await response.text()
-        throw new Error(errorMessage)
-    } else {
-        alert("Region saved")
-    }
-
-    return response
-}
-
 function actionPostRegion() {
     postRegion()
-    console.log("hej nu har jeg postet")
 }
 
+function actionPutRegion() {
+    console.log("kalder putregion")
+    putRegion()
+}
 
 pbPostRegion.addEventListener('click', actionPostRegion)
-
+pbPutRegion.addEventListener('click', actionPutRegion)
